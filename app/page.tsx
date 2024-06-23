@@ -57,28 +57,28 @@ export default function Home() {
           </div>
           <div className="flex space-x-4">
             <Link href="/signup">
-              <span className="btn-primary">Sign Up</span>
+              <span className="btn-primary cursor-pointer">Sign Up</span>
             </Link>
             <Link href="/login">
-              <span className="btn-secondary">Log In</span>
+              <span className="btn-secondary cursor-pointer">Log In</span>
             </Link>
           </div>
         </header>
 
         {/* Hero Section */}
         <section className="flex flex-col items-center justify-center space-y-8">
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-4xl font-bold animate-fadeIn">
             Your Gateway to Premium OTT Content
           </h2>
-          <p className="text-lg max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto animate-slideIn">
             Discover a world of entertainment with Maaott, where you can access multiple OTT platforms at affordable prices.
           </p>
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 animate-bounce">
             <Link href="/pricing">
-              <span className="btn-primary">View Pricing</span>
+              <span className="btn-primary cursor-pointer">View Pricing</span>
             </Link>
             <Link href="/features">
-              <span className="btn-secondary">Explore Features</span>
+              <span className="btn-secondary cursor-pointer">Explore Features</span>
             </Link>
           </div>
         </section>
@@ -86,7 +86,7 @@ export default function Home() {
         {/* Features Section */}
         <section className="w-full mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Feature Box 1 */}
-          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4">
+          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
               src="/feature1.svg"
               alt="Feature 1"
@@ -101,7 +101,7 @@ export default function Home() {
             </p>
           </div>
           {/* Feature Box 2 */}
-          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4">
+          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
               src="/feature2.svg"
               alt="Feature 2"
@@ -116,7 +116,7 @@ export default function Home() {
             </p>
           </div>
           {/* Feature Box 3 */}
-          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4">
+          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
               src="/feature3.svg"
               alt="Feature 3"
@@ -131,7 +131,7 @@ export default function Home() {
             </p>
           </div>
           {/* Feature Box 4 */}
-          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4">
+          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
               src="/feature4.svg"
               alt="Feature 4"
@@ -151,34 +151,38 @@ export default function Home() {
         <section className="w-full mt-16">
           <h2 className="text-4xl font-bold mb-8">Available on These Platforms</h2>
           <div className="flex flex-wrap justify-center items-center space-x-8 space-y-8">
-            <Image
-              src={netflixLogo}
-              alt="Netflix"
-              width={150}
-              height={75}
-              className="object-contain"
-            />
-            <Image
-              src={primeLogo}
-              alt="Amazon Prime"
-              width={150}
-              height={75}
-              className="object-contain"
-            />
-            <Image
-              src={disneyLogo}
-              alt="Disney+"
-              width={150}
-              height={75}
-              className="object-contain"
-            />
-            <Image
-              src={huluLogo}
-              alt="Hulu"
-              width={150}
-              height={75}
-              className="object-contain"
-            />
+            <div className="relative w-36 h-36 transform transition-transform hover:scale-110 hover:rotate-6">
+              <Image
+                src={netflixLogo}
+                alt="Netflix"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="relative w-36 h-36 transform transition-transform hover:scale-110 hover:rotate-6">
+              <Image
+                src={primeLogo}
+                alt="Amazon Prime"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="relative w-36 h-36 transform transition-transform hover:scale-110 hover:rotate-6">
+              <Image
+                src={disneyLogo}
+                alt="Disney+"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="relative w-36 h-36 transform transition-transform hover:scale-110 hover:rotate-6">
+              <Image
+                src={huluLogo}
+                alt="Hulu"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
             {/* Add more OTT logos as needed */}
           </div>
         </section>
@@ -192,7 +196,7 @@ export default function Home() {
             Join thousands of users who are already enjoying our platform.
           </p>
           <Link href="/signup">
-            <span className="btn-primary">Get Started</span>
+            <span className="btn-primary cursor-pointer">Get Started</span>
           </Link>
         </section>
 
@@ -201,10 +205,10 @@ export default function Home() {
           <p>&copy; {new Date().getFullYear()} Maaott. All rights reserved.</p>
           <div className="flex space-x-4">
             <Link href="/terms">
-              <span className="hover:underline">Terms of Service</span>
+              <span className="hover:underline cursor-pointer">Terms of Service</span>
             </Link>
             <Link href="/privacy">
-              <span className="hover:underline">Privacy Policy</span>
+              <span className="hover:underline cursor-pointer">Privacy Policy</span>
             </Link>
           </div>
         </footer>
@@ -215,6 +219,41 @@ export default function Home() {
         }
         .btn-secondary {
           @apply bg-gray-600 text-white font-semibold py-2 px-4 rounded hover:bg-gray-700 transition duration-300;
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        @keyframes slideIn {
+          from {
+            transform: translateY(100px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 2s ease-in-out;
+        }
+        .animate-slideIn {
+          animation: slideIn 2s ease-in-out;
+        }
+        .animate-bounce {
+          animation: bounce 2s infinite;
         }
       `}</style>
     </main>
