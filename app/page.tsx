@@ -11,10 +11,22 @@ import netflixLogo from './logo.png';
 import primeLogo from './logo.png';
 import disneyLogo from './logo.png';
 import huluLogo from './logo.png';
+import PlanComponent from './components/PlanComponent';
+import { planData } from './appData/plans';
+import ToggleGroup from './components/ToggleGroup';
+import { durationOptions } from './appData/toggleGroupOptions';
+import { topOttPlatform } from './appData/ott';
+
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
+  const [selectedValue, setSelectedValue] = useState<PricingDuration | null>(
+    null
+  );
 
+  const handleSelect = (value: PricingDuration) => {
+    setSelectedValue(value);
+  };
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -39,21 +51,18 @@ export default function Home() {
         {/* Header */}
         <header className="flex items-center justify-between w-full py-8 px-4 md:px-0">
           <div className="flex items-center space-x-4">
-            <div className="w-32 h-16 bg-gray-200 dark:bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
+            <div className="w-32 h-16 rounded-md flex items-center justify-center overflow-hidden">
               <Image
                 src={logo}
                 alt="Maaott Logo"
-                width={128}
-                height={64}
+                width={156}
+                height={128}
                 layout="responsive"
                 objectFit="contain"
                 className="rounded-md"
                 priority
               />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight">
-              Where All OTTs Meet
-            </h1>
           </div>
           <div className="flex space-x-4">
             <Link href="/signup">
@@ -67,6 +76,9 @@ export default function Home() {
 
         {/* Hero Section */}
         <section className="flex flex-col items-center justify-center space-y-8">
+          <h1 className="text-4xl font-bold tracking-tight">
+            Where All OTTs Meet
+          </h1>
           <h2 className="text-4xl font-bold animate-fadeIn">
             Your Gateway to Premium OTT Content
           </h2>
@@ -75,17 +87,28 @@ export default function Home() {
           </p>
           <div className="flex space-x-4 animate-bounce">
             <Link href="/pricing">
-              <span className="btn-primary cursor-pointer">View Pricing</span>
+              <span className="btn-primary cursor-pointer text-lg">View Pricing</span>
             </Link>
+          </div>
+          {/* <div className="flex space-x-4 animate-bounce">
             <Link href="/features">
               <span className="btn-secondary cursor-pointer">Explore Features</span>
             </Link>
-          </div>
+          </div> */}
         </section>
 
         {/* Features Section */}
+        <div>
+          <ToggleGroup
+            options={durationOptions}
+            selectedValue={selectedValue as PricingDuration}
+            onSelect={handleSelect}
+          />
+        </div>
+        <PlanComponent plans={planData} planDuration={selectedValue as PricingDuration} />
         <section className="w-full mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Feature Box 1 */}
+
+          {/* Feature Box 1
           <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
               src="/feature1.svg"
@@ -100,7 +123,7 @@ export default function Home() {
               Stream unlimited movies and series on any device, anytime.
             </p>
           </div>
-          {/* Feature Box 2 */}
+          {/* Feature Box 2 */}{/*
           <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
               src="/feature2.svg"
@@ -115,7 +138,7 @@ export default function Home() {
               Enjoy high-definition streaming with adaptive bitrate technology.
             </p>
           </div>
-          {/* Feature Box 3 */}
+          {/* Feature Box 3 */}{/*
           <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
               src="/feature3.svg"
@@ -130,7 +153,7 @@ export default function Home() {
               Get personalized recommendations based on your watch history.
             </p>
           </div>
-          {/* Feature Box 4 */}
+          {/* Feature Box 4 */}{/*
           <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
               src="/feature4.svg"
@@ -144,60 +167,43 @@ export default function Home() {
             <p className="text-gray-600 dark:text-gray-300 text-center">
               Download your favorites to watch offline on the go.
             </p>
-          </div>
-        </section>
-
-        {/* OTT Platforms Section */}
-        <section className="w-full mt-16">
-          <h2 className="text-4xl font-bold mb-8">Available on These Platforms</h2>
-          <div className="flex flex-wrap justify-center items-center space-x-8 space-y-8">
-            <div className="relative w-36 h-36 transform transition-transform hover:scale-110 hover:rotate-6">
-              <Image
-                src={netflixLogo}
-                alt="Netflix"
-                layout="fill"
-                objectFit="contain"
-              />
-            </div>
-            <div className="relative w-36 h-36 transform transition-transform hover:scale-110 hover:rotate-6">
-              <Image
-                src={primeLogo}
-                alt="Amazon Prime"
-                layout="fill"
-                objectFit="contain"
-              />
-            </div>
-            <div className="relative w-36 h-36 transform transition-transform hover:scale-110 hover:rotate-6">
-              <Image
-                src={disneyLogo}
-                alt="Disney+"
-                layout="fill"
-                objectFit="contain"
-              />
-            </div>
-            <div className="relative w-36 h-36 transform transition-transform hover:scale-110 hover:rotate-6">
-              <Image
-                src={huluLogo}
-                alt="Hulu"
-                layout="fill"
-                objectFit="contain"
-              />
-            </div>
-            {/* Add more OTT logos as needed */}
-          </div>
+          </div> */}
         </section>
 
         {/* Call to Action */}
         <section className="mt-16 flex flex-col items-center space-y-4">
           <h2 className="text-4xl font-bold text-center">
-            Ready to Explore Maaott?
+            Promote & Collaborate With Us
+          </h2>
+          <h2 className="text-4xl font-bold text-center">
+            Get Exciting Rewards & Offers
           </h2>
           <p className="text-lg text-center max-w-2xl mx-auto">
-            Join thousands of users who are already enjoying our platform.
+            Join thousands of users who are already enjoying the benifits.
           </p>
-          <Link href="/signup">
+          <Link href="/collaborators">
             <span className="btn-primary cursor-pointer">Get Started</span>
           </Link>
+        </section>
+        
+        <section className="w-full mt-16">
+          <h2 className="text-4xl font-bold mb-8">Top Platforms Available</h2>
+          <div className="flex flex-wrap justify-center items-center space-x-8">
+            {topOttPlatform.map((platform, index) => (
+              <div
+                key={index}
+                className="relative w-36 h-36 transform transition-transform hover:scale-110 hover:rotate-6"
+              >
+                <Image
+                  src={platform.logoSrc}
+                  alt={platform.name}
+                  layout="fill"
+                  objectFit="contain"
+                />
+                {platform.name}
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Footer */}
