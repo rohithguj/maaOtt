@@ -6,6 +6,12 @@ import { useEffect, useState } from 'react';
 import logo from './logo.png';
 import bg from './bgimg.jpeg';
 
+// Example OTT logos - replace with actual images
+import netflixLogo from './logo.png';
+import primeLogo from './logo.png';
+import disneyLogo from './logo.png';
+import huluLogo from './logo.png';
+
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
@@ -138,6 +144,42 @@ export default function Home() {
             <p className="text-gray-600 dark:text-gray-300 text-center">
               Download your favorites to watch offline on the go.
             </p>
+          </div>
+        </section>
+
+        {/* OTT Platforms Section */}
+        <section className="w-full mt-16">
+          <h2 className="text-4xl font-bold mb-8">Available on These Platforms</h2>
+          <div className="flex flex-wrap justify-center items-center space-x-8 space-y-8">
+            <Image
+              src={netflixLogo}
+              alt="Netflix"
+              width={150}
+              height={75}
+              className="object-contain"
+            />
+            <Image
+              src={primeLogo}
+              alt="Amazon Prime"
+              width={150}
+              height={75}
+              className="object-contain"
+            />
+            <Image
+              src={disneyLogo}
+              alt="Disney+"
+              width={150}
+              height={75}
+              className="object-contain"
+            />
+            <Image
+              src={huluLogo}
+              alt="Hulu"
+              width={150}
+              height={75}
+              className="object-contain"
+            />
+            {/* Add more OTT logos as needed */}
           </div>
         </section>
 
