@@ -1,22 +1,19 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import logo from './logo.png';
-import bg from './bgimg.jpeg';
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import logo from "./logo.png";
+import bg from "./bgimg.jpeg";
 
 // Example OTT logos - replace with actual images
-import netflixLogo from './logo.png';
-import primeLogo from './logo.png';
-import disneyLogo from './logo.png';
-import huluLogo from './logo.png';
-import PlanComponent from './components/PlanComponent';
-import { planData } from './appData/plans';
-import ToggleGroup from './components/ToggleGroup';
-import { durationOptions } from './appData/toggleGroupOptions';
-import { topOttPlatform } from './appData/ott';
-
+import PlanComponent from "./components/PlanComponent";
+import { planData } from "./appData/plans";
+import ToggleGroup from "./components/ToggleGroup";
+import { durationOptions } from "./appData/toggleGroupOptions";
+import { topOttPlatform } from "./appData/ott";
+import { useAppStore } from "./useAppStore";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -27,8 +24,18 @@ export default function Home() {
   const handleSelect = (value: PricingDuration) => {
     setSelectedValue(value);
   };
+
+  const [setReferral, loggedIn] = useAppStore((s) => [
+    s.setReferral,
+    s.loggedIn,
+  ]);
+
+  const searchParams = useSearchParams();
+  const referal = searchParams.get("ref");
+
   useEffect(() => {
     setLoading(false);
+    setReferral(referal);
   }, []);
 
   return (
@@ -52,26 +59,30 @@ export default function Home() {
         <header className="flex items-center justify-between w-full py-8 px-4 md:px-0">
           <div className="flex items-center space-x-4">
             <div className="w-32 h-16 rounded-md flex items-center justify-center overflow-hidden">
-              <Image
-                src={logo}
-                alt="Maaott Logo"
-                width={156}
-                height={128}
-                layout="responsive"
-                objectFit="contain"
-                className="rounded-md"
-                priority
-              />
+              <Link href={"./"}>
+                <Image
+                  src={logo}
+                  alt="Maaott Logo"
+                  width={156}
+                  height={128}
+                  layout="responsive"
+                  objectFit="contain"
+                  className="rounded-md"
+                  priority
+                />
+              </Link>
             </div>
           </div>
-          <div className="flex space-x-4">
-            <Link href="/signup">
-              <span className="btn-primary cursor-pointer">Sign Up</span>
-            </Link>
-            <Link href="/login">
-              <span className="btn-secondary cursor-pointer">Log In</span>
-            </Link>
-          </div>
+          {!loggedIn && (
+            <div className="flex space-x-4">
+              <Link href="/signup">
+                <span className="btn-primary cursor-pointer">Sign Up</span>
+              </Link>
+              <Link href="/login">
+                <span className="btn-secondary cursor-pointer">Log In</span>
+              </Link>
+            </div>
+          )}
         </header>
 
         {/* Hero Section */}
@@ -83,11 +94,14 @@ export default function Home() {
             Your Gateway to Premium OTT Content
           </h2>
           <p className="text-lg max-w-2xl mx-auto animate-slideIn">
-            Discover a world of entertainment with Maaott, where you can access multiple OTT platforms at affordable prices.
+            Discover a world of entertainment with Maaott, where you can access
+            multiple OTT platforms at affordable prices.
           </p>
           <div className="flex space-x-4 animate-bounce">
             <Link href="/pricing">
-              <span className="btn-primary cursor-pointer text-lg">View Pricing</span>
+              <span className="btn-primary cursor-pointer text-lg">
+                View Pricing
+              </span>
             </Link>
           </div>
           {/* <div className="flex space-x-4 animate-bounce">
@@ -105,9 +119,11 @@ export default function Home() {
             onSelect={handleSelect}
           />
         </div>
-        <PlanComponent plans={planData} planDuration={selectedValue as PricingDuration} />
+        <PlanComponent
+          plans={planData}
+          planDuration={selectedValue as PricingDuration}
+        />
         <section className="w-full mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
           {/* Feature Box 1
           <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
@@ -123,7 +139,8 @@ export default function Home() {
               Stream unlimited movies and series on any device, anytime.
             </p>
           </div>
-          {/* Feature Box 2 */}{/*
+          {/* Feature Box 2 */}
+          {/*
           <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
               src="/feature2.svg"
@@ -138,7 +155,8 @@ export default function Home() {
               Enjoy high-definition streaming with adaptive bitrate technology.
             </p>
           </div>
-          {/* Feature Box 3 */}{/*
+          {/* Feature Box 3 */}
+          {/*
           <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
               src="/feature3.svg"
@@ -153,7 +171,8 @@ export default function Home() {
               Get personalized recommendations based on your watch history.
             </p>
           </div>
-          {/* Feature Box 4 */}{/*
+          {/* Feature Box 4 */}
+          {/*
           <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
             <Image
               src="/feature4.svg"
@@ -181,11 +200,11 @@ export default function Home() {
           <p className="text-lg text-center max-w-2xl mx-auto">
             Join thousands of users who are already enjoying the benifits.
           </p>
-          <Link href="/collaborators">
+          <Link href="/colab">
             <span className="btn-primary cursor-pointer">Get Started</span>
           </Link>
         </section>
-        
+
         <section className="w-full mt-16">
           <h2 className="text-4xl font-bold mb-8">Top Platforms Available</h2>
           <div className="flex flex-wrap justify-center items-center space-x-8">
@@ -211,10 +230,14 @@ export default function Home() {
           <p>&copy; {new Date().getFullYear()} Maaott. All rights reserved.</p>
           <div className="flex space-x-4">
             <Link href="/terms">
-              <span className="hover:underline cursor-pointer">Terms of Service</span>
+              <span className="hover:underline cursor-pointer">
+                Terms of Service
+              </span>
             </Link>
             <Link href="/privacy">
-              <span className="hover:underline cursor-pointer">Privacy Policy</span>
+              <span className="hover:underline cursor-pointer">
+                Privacy Policy
+              </span>
             </Link>
           </div>
         </footer>
@@ -245,7 +268,8 @@ export default function Home() {
           }
         }
         @keyframes bounce {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0);
           }
           50% {

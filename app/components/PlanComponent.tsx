@@ -49,7 +49,6 @@ export interface PlanProps {
   };
 
   const priceObj = pricing.find(price => price.duration === planDuration);
-  console.log(planDuration)
 
   return (
     <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
