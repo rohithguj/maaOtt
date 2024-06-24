@@ -23,19 +23,21 @@ const CollaboratorDashboard: React.FC<CollaboratorDashboardProps> = ({
   commissionRate,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
-  const [isLoggedIn] = useAppStore((s) => [s.loggedIn]);
+  const [isLoggedIn, setRedirect] = useAppStore((s) => [
+    s.loggedIn,
+    s.setRedirect,
+  ]);
+  const currentPagePath = usePathname();
   const router = useRouter();
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
 
-  console.log(isLoggedIn)
+  console.log(isLoggedIn);
   if (!isLoggedIn) {
-    const currentPagePath = usePathname();
-    const [setRedirect] = useAppStore((s) => [s.setRedirect]);
     setRedirect(currentPagePath);
-    router.push('/login');
+    router.push("/login");
     return null;
   }
 

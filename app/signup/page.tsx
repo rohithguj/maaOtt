@@ -331,7 +331,7 @@ const SignUpForm: React.FC = () => {
               onClick={handleUnregisteredUser}
               className="w-full bg-white border border-gray-300 text-gray-600 p-2 rounded-md flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:shadow-outline mb-4"
             >
-              Don't Have a Email?
+              Don&apost;t Have a Email?
             </button>
           </div>
         )}
