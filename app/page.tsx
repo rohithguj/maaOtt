@@ -25,7 +25,7 @@ export default function Home() {
     setSelectedValue(value);
   };
 
-  const [setReferral, loggedIn] = useAppStore((s) => [
+  const [setReferral, isLoggedIn] = useAppStore((s) => [
     s.setReferral,
     s.loggedIn,
   ]);
@@ -73,7 +73,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          {!loggedIn && (
+          {!isLoggedIn && (
             <div className="flex space-x-4">
               <Link href="/signup">
                 <span className="btn-primary cursor-pointer">Sign Up</span>
@@ -97,13 +97,13 @@ export default function Home() {
             Discover a world of entertainment with Maaott, where you can access
             multiple OTT platforms at affordable prices.
           </p>
-          <div className="flex space-x-4 animate-bounce">
+          {/* <div className="flex space-x-4 animate-bounce">
             <Link href="/pricing">
               <span className="btn-primary cursor-pointer text-lg">
                 View Pricing
               </span>
             </Link>
-          </div>
+          </div> */}
           {/* <div className="flex space-x-4 animate-bounce">
             <Link href="/features">
               <span className="btn-secondary cursor-pointer">Explore Features</span>
@@ -189,6 +189,14 @@ export default function Home() {
           </div> */}
         </section>
 
+        <div className="flex space-x-4 animate-bounce">
+          <Link href="/signup">
+            <h2 className="text-4xl btn-primary cursor-pointer text-lg bg-gray-600 p-4 rounded-lg text-white hover:bg-gray-800">
+              Register Now
+            </h2>
+          </Link>
+        </div>
+
         {/* Call to Action */}
         <section className="mt-16 flex flex-col items-center space-y-4">
           <h2 className="text-4xl font-bold text-center">
@@ -200,9 +208,9 @@ export default function Home() {
           <p className="text-lg text-center max-w-2xl mx-auto">
             Join thousands of users who are already enjoying the benifits.
           </p>
-          <Link href="/colab">
+          {/* <Link href="/colab">
             <span className="btn-primary cursor-pointer">Get Started</span>
-          </Link>
+          </Link> */}
         </section>
 
         <section className="w-full mt-16">

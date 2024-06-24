@@ -10,7 +10,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, setDoc, doc } from "firebase/firestore"; // Import necessary Firestore functions
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons/faGoogle";
@@ -129,6 +129,47 @@ const SignUpForm: React.FC = () => {
     setIsCollaborator(!isCollaborator);
   };
 
+    const handleUnregisteredUser = async () => {
+      try {
+        // Check if a document with the same phone number already exists
+        const q = query(
+          collection(db, "unregistered_users"),
+          where("phoneNumber", "==", phoneNumber)
+        );
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          // If a document with the same phone number is found, throw an error
+          throw new Error("A user with this phone number already exists.");
+        }
+
+        // Generate a random ID for the unregistered user
+        const unregisteredUserId = Math.random().toString(36).substr(2, 9);
+
+        // Write user details to the 'unregistered_users' collection
+        await setDoc(doc(db, "unregistered_users", unregisteredUserId), {
+          name,
+          phoneNumber,
+          city,
+          country,
+          pin,
+          createdAt: new Date(),
+          lastUpdatedAt: new Date(),
+          isCollaborator, // Set initial value for isCollaborator
+          referal,
+          uid: unregisteredUserId,
+          // Add other relevant fields here
+        });
+
+        console.log("Unregistered user details saved successfully!");
+
+        router.push("./");
+        setRedirect(null);
+        // Redirect or show success message
+      } catch (err: any) {
+        setError(err.message);
+      }
+    };
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="bg-white p-8 rounded-md shadow-md w-96">
@@ -278,11 +319,22 @@ const SignUpForm: React.FC = () => {
               <FontAwesomeIcon icon={faGoogle} className="mr-2" />
               Sign Up with Google
             </button>
+
+            <button
+              onClick={handleUnregisteredUser}
+              className="w-full bg-white border border-gray-300 text-gray-600 p-2 rounded-md flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:shadow-outline mb-4"
+            >
+              Don't Have a Email?
+            </button>
           </div>
         )}
         <div className="pt-2 text-gray-600 text-sm">
           Already have an account?{" "}
-          <Link href={`/login?redirect=${encodeURIComponent(redirectUrl as string)}`}>
+          <Link
+            href={`/login?redirect=${encodeURIComponent(
+              redirectUrl as string
+            )}`}
+          >
             <span className="text-blue-500 hover:underline">Log In</span>
           </Link>
         </div>
