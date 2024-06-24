@@ -10,14 +10,21 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { collection, query, where, getDocs, setDoc, doc } from "firebase/firestore"; // Import necessary Firestore functions
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  setDoc,
+  doc,
+} from "firebase/firestore"; // Import necessary Firestore functions
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons/faGoogle";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Toggle from "../components/Toggle";
 import { useAppStore } from "../useAppStore";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const SignUpForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -40,9 +47,9 @@ const SignUpForm: React.FC = () => {
 
   const router = useRouter();
   const handlePostSignup = () => {
-        setLoggedin(true);
-        redirectUrl ? router.push(redirectUrl as string) : router.push("./");
-        setRedirect(null);
+    setLoggedin(true);
+    redirectUrl ? router.push(redirectUrl as string) : router.push("./");
+    setRedirect(null);
   };
 
   const [flag, setFlag] = useState(false);
@@ -129,47 +136,47 @@ const SignUpForm: React.FC = () => {
     setIsCollaborator(!isCollaborator);
   };
 
-    const handleUnregisteredUser = async () => {
-      try {
-        // Check if a document with the same phone number already exists
-        const q = query(
-          collection(db, "unregistered_users"),
-          where("phoneNumber", "==", phoneNumber)
-        );
-        const querySnapshot = await getDocs(q);
+  const handleUnregisteredUser = async () => {
+    try {
+      // Check if a document with the same phone number already exists
+      const q = query(
+        collection(db, "unregistered_users"),
+        where("phoneNumber", "==", phoneNumber)
+      );
+      const querySnapshot = await getDocs(q);
 
-        if (!querySnapshot.empty) {
-          // If a document with the same phone number is found, throw an error
-          throw new Error("A user with this phone number already exists.");
-        }
-
-        // Generate a random ID for the unregistered user
-        const unregisteredUserId = Math.random().toString(36).substr(2, 9);
-
-        // Write user details to the 'unregistered_users' collection
-        await setDoc(doc(db, "unregistered_users", unregisteredUserId), {
-          name,
-          phoneNumber,
-          city,
-          country,
-          pin,
-          createdAt: new Date(),
-          lastUpdatedAt: new Date(),
-          isCollaborator, // Set initial value for isCollaborator
-          referal,
-          uid: unregisteredUserId,
-          // Add other relevant fields here
-        });
-
-        console.log("Unregistered user details saved successfully!");
-
-        router.push("./");
-        setRedirect(null);
-        // Redirect or show success message
-      } catch (err: any) {
-        setError(err.message);
+      if (!querySnapshot.empty) {
+        // If a document with the same phone number is found, throw an error
+        throw new Error("A user with this phone number already exists.");
       }
-    };
+
+      // Generate a random ID for the unregistered user
+      const unregisteredUserId = Math.random().toString(36).substr(2, 9);
+
+      // Write user details to the 'unregistered_users' collection
+      await setDoc(doc(db, "unregistered_users", unregisteredUserId), {
+        name,
+        phoneNumber,
+        city,
+        country,
+        pin,
+        createdAt: new Date(),
+        lastUpdatedAt: new Date(),
+        isCollaborator, // Set initial value for isCollaborator
+        referal,
+        uid: unregisteredUserId,
+        // Add other relevant fields here
+      });
+
+      console.log("Unregistered user details saved successfully!");
+
+      router.push("./");
+      setRedirect(null);
+      // Redirect or show success message
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="bg-white p-8 rounded-md shadow-md w-96">
