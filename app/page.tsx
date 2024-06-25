@@ -13,9 +13,9 @@ import { durationOptions } from "./appData/toggleGroupOptions";
 import { topOttPlatform } from "./appData/ott";
 import { useAppStore } from "./useAppStore";
 
-export default function Home() {
+export default function Home(ref?: any) {
   
-  const params = useParams();
+  const referal = ref.searchParams.ref;
   
   const [loading, setLoading] = useState(true);
   const [selectedValue, setSelectedValue] = useState<PricingDuration | null>(
@@ -33,7 +33,7 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(false);
-    setReferral(params.ref? params.ref as string: null);
+    setReferral(referal ? (referal as string) : null);
   }, []);
 
   return (
