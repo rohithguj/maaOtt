@@ -9,7 +9,7 @@ import Image from "next/image";
 
 
 export interface PlanProps {
-    src: string;
+    src?: string;
     alt?: string;
     title: string;
     description: string;
@@ -53,7 +53,7 @@ export interface PlanProps {
 
   return (
     <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4 transform transition-transform hover:scale-105">
-      <Image src={src} alt={alt || title} className="w-24 h-24 object-contain" />
+      {/* <Image src={src} alt={alt || title} className="w-24 h-24 object-contain" /> */}
       <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{title}</h3>
       <p className="text-gray-600 dark:text-gray-300 text-center">{description}</p>
       <div className="flex flex-col items-start mt-auto">

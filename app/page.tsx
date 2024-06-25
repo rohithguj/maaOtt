@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import logo from "./logo.png";
-import bg from "./bgimg.jpeg";
 
 // Example OTT logos - replace with actual images
 import PlanComponent from "./components/PlanComponent";
@@ -43,7 +41,7 @@ export default function Home() {
       {/* Background Image with Blur Effect */}
       <div className="absolute inset-0">
         <Image
-          src={bg}
+          src="/bgimg.jpeg"
           alt="Background"
           layout="fill"
           objectFit="cover"
@@ -61,7 +59,7 @@ export default function Home() {
             <div className="w-32 h-16 rounded-md flex items-center justify-center overflow-hidden">
               <Link href={"./"}>
                 <Image
-                  src={logo}
+                  src="/logo.png"
                   alt="Maaott Logo"
                   width={156}
                   height={128}

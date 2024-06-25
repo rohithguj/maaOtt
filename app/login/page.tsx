@@ -29,8 +29,8 @@ const Login = () => {
   const router = useRouter();
 
   const handlePostLogin = () => {
-    setLoggedin(true); 
-    redirectUrl? router.push(redirectUrl as string): router.push("./");
+    setLoggedin(true);
+    redirectUrl ? router.push(redirectUrl as string) : router.push("./");
     setRedirect(null);
   };
 
