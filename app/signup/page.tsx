@@ -32,7 +32,6 @@ const SignUpForm: React.FC = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
   const [pin, setPin] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
@@ -80,13 +79,12 @@ const SignUpForm: React.FC = () => {
       const user = auth.currentUser;
       if (user) {
         // Update user profile with additional details
-        await setDoc(
+        await setDoc( 
           doc(db, "users", user.uid),
           {
             name,
             phoneNumber,
             city,
-            country,
             pin,
             createdAt: new Date(),
             lastUpdatedAt: new Date(),
@@ -158,7 +156,6 @@ const SignUpForm: React.FC = () => {
         name,
         phoneNumber,
         city,
-        country,
         pin,
         createdAt: new Date(),
         lastUpdatedAt: new Date(),
