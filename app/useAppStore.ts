@@ -1,5 +1,5 @@
 import { redirect } from "next/dist/server/api-utils";
-import create from "zustand";
+import {create} from "zustand";
 
 interface AppState {
   referral: string | null;

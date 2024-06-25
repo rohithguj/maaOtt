@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 
 // Example OTT logos - replace with actual images
 import PlanComponent from "./components/PlanComponent";
@@ -14,6 +14,9 @@ import { topOttPlatform } from "./appData/ott";
 import { useAppStore } from "./useAppStore";
 
 export default function Home() {
+  
+  const params = useParams();
+  
   const [loading, setLoading] = useState(true);
   const [selectedValue, setSelectedValue] = useState<PricingDuration | null>(
     null
@@ -28,12 +31,9 @@ export default function Home() {
     s.loggedIn,
   ]);
 
-  const searchParams = useSearchParams();
-  const referal = searchParams.get("ref");
-
   useEffect(() => {
     setLoading(false);
-    setReferral(referal);
+    setReferral(params.ref? params.ref as string: null);
   }, []);
 
   return (
