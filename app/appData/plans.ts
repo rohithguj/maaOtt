@@ -2,7 +2,7 @@ import { PlanProps } from "../components/PlanComponent";
 
 export const planData: PlanProps[] = [
     {
-      src: "/plan1_image.png",
+      src: "/.png",
       title: "Standard Plan",
       description: "Standard HD plan with access to SonyLIV, ETV Win, Hotstar, ZEE5, Amazon Prime Video, and Netflix.",
       pricing: [

@@ -29,8 +29,8 @@ const Login = () => {
   const router = useRouter();
 
   const handlePostLogin = () => {
-    setLoggedin(true); 
-    redirectUrl? router.push(redirectUrl as string): router.push("./");
+    setLoggedin(true);
+    redirectUrl ? router.push(redirectUrl as string) : router.push("./");
     setRedirect(null);
   };
 
@@ -114,10 +114,8 @@ const Login = () => {
           Login with Google
         </button>
         <div className="pt-2 text-gray-600 text-sm">
-          Don't have an account?{" "}
-          <Link
-            href={'/signup'}
-          >
+          Don&apost;t have an account?{" "}
+          <Link href={"/signup"}>
             <span className="text-blue-500 hover:underline">Sign Up</span>
           </Link>
         </div>
