@@ -21,11 +21,13 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
 
-  const [setLoggedin, redirectUrl, setRedirect] = useAppStore((s) => [
-    s.setLoggedin,
-    s.redirect,
-    s.setRedirect,
-  ]);
+  const [setLoggedin, redirectUrl, setRedirect, setRedirectedFromAuth] =
+    useAppStore((s) => [
+      s.setLoggedin,
+      s.redirect,
+      s.setRedirect,
+      s.setRedirectedFromAuth,
+    ]);
 
   const router = useRouter();
 
@@ -33,6 +35,7 @@ const Login = () => {
     setLoggedin(true);
     redirectUrl ? router.push(redirectUrl as string) : router.push("./");
     setRedirect(null);
+    setRedirectedFromAuth(true);
   };
 
   const handleLoginWithEmailPassword = async (e: {

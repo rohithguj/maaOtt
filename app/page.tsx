@@ -12,11 +12,12 @@ import ToggleGroup from "./components/ToggleGroup";
 import { durationOptions } from "./appData/toggleGroupOptions";
 import { topOttPlatform } from "./appData/ott";
 import { useAppStore } from "./useAppStore";
+import router from "next/navigation";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 export default function Home(ref?: any) {
-  
   const referal = ref.searchParams.ref;
-  
+
   const [loading, setLoading] = useState(true);
   const [selectedValue, setSelectedValue] = useState<PricingDuration | null>(
     "1m"
@@ -26,14 +27,33 @@ export default function Home(ref?: any) {
     setSelectedValue(value);
   };
 
-  const [setReferral, isLoggedIn] = useAppStore((s) => [
-    s.setReferral,
-    s.loggedIn,
-  ]);
+  const [setReferral, isLoggedIn, redirectedFromAuth, setRedirectedFromAuth] =
+    useAppStore((s) => [
+      s.setReferral,
+      s.loggedIn,
+      s.redirectedFromAuth,
+      s.setRedirectedFromAuth,
+    ]);
 
   useEffect(() => {
     setLoading(false);
     setReferral(referal ? (referal as string) : null);
+
+    console.log(redirectedFromAuth);
+    if (redirectedFromAuth) {
+      toast("Details saved sucefully. Our team will contact you", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      // setRedirectedFromAuth(false);
+    }
   }, []);
 
   return (
@@ -82,7 +102,19 @@ export default function Home(ref?: any) {
             </div>
           )}
         </header>
-
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          transition={Bounce}
+          className="text-3xl"
+        />
         {/* Hero Section */}
         <section className="flex flex-col items-center justify-center space-y-8">
           <h1 className="text-4xl font-bold tracking-tight">

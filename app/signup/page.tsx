@@ -38,11 +38,19 @@ const SignUpForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [isCollaborator, setIsCollaborator] = useState(false);
 
-  const [setLoggedin, referal, redirectUrl, setRedirect] = useAppStore((s) => [
+  const [
+    setLoggedin,
+    referal,
+    redirectUrl,
+    setRedirect,
+    setRedirectedFromAuth,
+  ] = useAppStore((s) => [
     s.setLoggedin,
     s.referral,
     s.redirect,
     s.setRedirect,
+    s.setRedirectedFromAuth,
+    ,
   ]);
 
   const router = useRouter();
@@ -50,6 +58,7 @@ const SignUpForm: React.FC = () => {
     setLoggedin(true);
     redirectUrl ? router.push(redirectUrl as string) : router.push("./");
     setRedirect(null);
+    setRedirectedFromAuth(true);
   };
 
   const [flag, setFlag] = useState(false);
