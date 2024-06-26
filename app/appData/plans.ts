@@ -136,10 +136,10 @@ export const planData: PlanProps[] = [
     description:
       "Premium plan to accomodate everyones needs adn ultimate entertainment pack.",
     pricing: [
-      { duration: "1m", ourPrice: 260, originalPrice: 24.99 },
-      { duration: "3m", ourPrice: 750, originalPrice: 59.99 },
-      { duration: "6m", ourPrice: 1400, originalPrice: 109.99 },
-      { duration: "1y", ourPrice: 2600, originalPrice: 199.99 },
+      { duration: "1m", ourPrice: 270, originalPrice: 24.99 },
+      { duration: "3m", ourPrice: 780, originalPrice: 59.99 },
+      { duration: "6m", ourPrice: 1500, originalPrice: 109.99 },
+      { duration: "1y", ourPrice: 2800, originalPrice: 199.99 },
     ],
     ottCodes: [
       "zee5",
