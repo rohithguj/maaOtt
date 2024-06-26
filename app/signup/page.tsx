@@ -25,6 +25,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Toggle from "../components/Toggle";
 import { useAppStore } from "../useAppStore";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const SignUpForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -32,17 +33,24 @@ const SignUpForm: React.FC = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
   const [pin, setPin] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [isCollaborator, setIsCollaborator] = useState(false);
 
-  const [setLoggedin, referal, redirectUrl, setRedirect] = useAppStore((s) => [
+  const [
+    setLoggedin,
+    referal,
+    redirectUrl,
+    setRedirect,
+    setRedirectedFromAuth,
+  ] = useAppStore((s) => [
     s.setLoggedin,
     s.referral,
     s.redirect,
     s.setRedirect,
+    s.setRedirectedFromAuth,
+    ,
   ]);
 
   const router = useRouter();
@@ -50,6 +58,7 @@ const SignUpForm: React.FC = () => {
     setLoggedin(true);
     redirectUrl ? router.push(redirectUrl as string) : router.push("./");
     setRedirect(null);
+    setRedirectedFromAuth(true);
   };
 
   const [flag, setFlag] = useState(false);
@@ -80,13 +89,12 @@ const SignUpForm: React.FC = () => {
       const user = auth.currentUser;
       if (user) {
         // Update user profile with additional details
-        await setDoc(
+        await setDoc( 
           doc(db, "users", user.uid),
           {
             name,
             phoneNumber,
             city,
-            country,
             pin,
             createdAt: new Date(),
             lastUpdatedAt: new Date(),
@@ -158,7 +166,6 @@ const SignUpForm: React.FC = () => {
         name,
         phoneNumber,
         city,
-        country,
         pin,
         createdAt: new Date(),
         lastUpdatedAt: new Date(),
@@ -178,172 +185,187 @@ const SignUpForm: React.FC = () => {
     }
   };
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="bg-white p-8 rounded-md shadow-md w-96">
-        <h2 className="text-2xl text-gray-600 font-bold mb-4">Sign Up</h2>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
-        {/* Sign up form */}
-        {/* Additional details form */}
-        {!flag && (
-          <form onSubmit={toggleFLag}>
-            <div className="mb-4">
-              <label className="block text-sm font-semibold text-gray-600">
-                Name
-              </label>
-              <input
-                type="text"
-                className="w-full p-2 border rounded-md focus:outline-none focus:border-gray-700 text-gray-600"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-semibold text-gray-600">
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                className="w-full p-2 border rounded-md focus:outline-none focus:border-gray-700 text-gray-600"
-                placeholder="Enter your phone number"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-semibold text-gray-600">
-                City
-              </label>
-              <input
-                type="text"
-                className="w-full p-2 border rounded-md focus:outline-none focus:border-gray-700 text-gray-600"
-                placeholder="Enter your city"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-semibold text-gray-600">
-                PIN Code
-              </label>
-              <input
-                type="text"
-                className="w-full p-2 border rounded-md focus:outline-none focus:border-gray-700 text-gray-600"
-                placeholder="Enter your PIN"
-                value={pin}
-                onChange={(e) => setPin(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4 flex items-center">
-              <Toggle isOn={isCollaborator} toggle={toggleCollaborator} />
-              <span className="text-sm font-semibold text-gray-600 mx-1 items-center">
-                Join as collaborator?
-              </span>
-              <Link
-                href="colabintro"
-                target="_blank"
-                className="text-blue-500 hover:underline items-center"
-              >
-                Learn More
-              </Link>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue mb-4"
-            >
-              Next
-            </button>
-          </form>
-        )}
-        {flag && (
-          <div>
-            <form onSubmit={handleSignup}>
-              <div className="mb-4">
-                <label className="block text-sm font-semibold text-gray-600">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  className="w-full p-2 border rounded-md focus:outline-none focus:border-gray-700 text-gray-600"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-semibold text-gray-600">
-                  Password
-                </label>
-                <div className="relative">
+    <div>
+      <div className="absolute inset-0">
+        <Image
+          src="/bgimg.jpeg"
+          alt="Background"
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+          className="blur-sm"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-gray-900 opacity-75"></div>
+      </div>
+      <div className="relative z-10 max-w-7xl w-full mx-auto flex flex-col items-center justify-center space-y-12 text-center text-white">
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="bg-white p-8 rounded-md shadow-md w-96">
+            <h2 className="text-2xl text-gray-600 font-bold mb-4">Sign Up</h2>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {/* Sign up form */}
+            {/* Additional details form */}
+            {!flag && (
+              <form onSubmit={toggleFLag}>
+                <div className="mb-4">
+                  <label className="block text-sm font-semibold text-gray-600 text-left">
+                    Name
+                  </label>
                   <input
-                    type={showPassword ? "text" : "password"}
+                    type="text"
                     className="w-full p-2 border rounded-md focus:outline-none focus:border-gray-700 text-gray-600"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required
                   />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-semibold text-gray-600 text-left">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    className="w-full p-2 border rounded-md focus:outline-none focus:border-gray-700 text-gray-600"
+                    placeholder="Enter your phone number"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-semibold text-gray-600 text-left">
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md focus:outline-none focus:border-gray-700 text-gray-600"
+                    placeholder="Enter your city"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-semibold text-gray-600 text-left">
+                    PIN Code
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md focus:outline-none focus:border-gray-700 text-gray-600"
+                    placeholder="Enter your PIN"
+                    value={pin}
+                    onChange={(e) => setPin(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="mb-4 flex items-center">
+                  <Toggle isOn={isCollaborator} toggle={toggleCollaborator} />
+                  <span className="text-sm font-semibold text-gray-600 mx-1 items-center">
+                    Join as collaborator?
+                  </span>
+                  <Link
+                    href="colabintro"
+                    target="_blank"
+                    className="text-blue-500 hover:underline items-center"
+                  >
+                    Learn More
+                  </Link>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue mb-4"
+                >
+                  Next
+                </button>
+              </form>
+            )}
+            {flag && (
+              <div>
+                <form onSubmit={handleSignup}>
+                  <div className="mb-4">
+                    <label className="block text-sm font-semibold text-gray-600 text-left">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="w-full p-2 border rounded-md focus:outline-none focus:border-gray-700 text-gray-600"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-semibold text-gray-600 text-left">
+                      Password
+                    </label>
+                    <div className="relative">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className="w-full p-2 border rounded-md focus:outline-none focus:border-gray-700 text-gray-600"
+                        placeholder="Enter your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                      />
+                      <button
+                        type="button"
+                        className="absolute inset-y-0 right-0 px-3 py-2"
+                        onClick={togglePasswordVisibility}
+                      >
+                        <FontAwesomeIcon
+                          color="gray"
+                          icon={showPassword ? faEyeSlash : faEye}
+                        />
+                      </button>
+                    </div>
+                  </div>
                   <button
                     type="button"
-                    className="absolute inset-y-0 right-0 px-3 py-2"
-                    onClick={togglePasswordVisibility}
+                    className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue mb-4"
+                    onClick={() => {
+                      setFlag(!flag);
+                    }}
                   >
-                    <FontAwesomeIcon
-                      color="gray"
-                      icon={showPassword ? faEyeSlash : faEye}
-                    />
+                    Back
                   </button>
-                </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue mb-4"
+                  >
+                    Sign Up
+                  </button>
+                </form>
+
+                {/* Sign up with Google button */}
+                <button
+                  onClick={handleGoogleSignIn}
+                  className="w-full bg-white border border-gray-300 text-gray-600 p-2 rounded-md flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:shadow-outline mb-4"
+                >
+                  <FontAwesomeIcon icon={faGoogle} className="mr-2" />
+                  Sign Up with Google
+                </button>
+
+                <button
+                  onClick={handleUnregisteredUser}
+                  className="w-full bg-white border border-gray-300 text-gray-600 p-2 rounded-md flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:shadow-outline mb-4"
+                >
+                  Don&apost;t Have a Email?
+                </button>
               </div>
-              <button
-                type="button"
-                className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue mb-4"
-                onClick={() => {
-                  setFlag(!flag);
-                }}
+            )}
+            <div className="pt-2 text-gray-600 text-sm">
+              Already have an account?{" "}
+              <Link
+                href={`/login?redirect=${encodeURIComponent(
+                  redirectUrl as string
+                )}`}
               >
-                Back
-              </button>
-              <button
-                type="submit"
-                className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue mb-4"
-              >
-                Sign Up
-              </button>
-            </form>
-
-            {/* Sign up with Google button */}
-            <button
-              onClick={handleGoogleSignIn}
-              className="w-full bg-white border border-gray-300 text-gray-600 p-2 rounded-md flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:shadow-outline mb-4"
-            >
-              <FontAwesomeIcon icon={faGoogle} className="mr-2" />
-              Sign Up with Google
-            </button>
-
-            <button
-              onClick={handleUnregisteredUser}
-              className="w-full bg-white border border-gray-300 text-gray-600 p-2 rounded-md flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:shadow-outline mb-4"
-            >
-              Don&apost;t Have a Email?
-            </button>
+                <span className="text-blue-500 hover:underline">Log In</span>
+              </Link>
+            </div>
           </div>
-        )}
-        <div className="pt-2 text-gray-600 text-sm">
-          Already have an account?{" "}
-          <Link
-            href={`/login?redirect=${encodeURIComponent(
-              redirectUrl as string
-            )}`}
-          >
-            <span className="text-blue-500 hover:underline">Log In</span>
-          </Link>
         </div>
       </div>
     </div>

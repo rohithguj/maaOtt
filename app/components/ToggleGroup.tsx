@@ -23,7 +23,7 @@ const ToggleGroup: React.FC<ToggleGroupProps> = ({
           key={option.value}
           className={`px-4 py-2 text-white ${
             selectedValue === option.value ? "bg-gray-800" : "bg-gray-600"
-          } hover:bg-blue-600 rounded-md`}
+          } hover:bg-gray-800 rounded-md`}
           onClick={() => onSelect(option.value)}
         >
           {option.name}

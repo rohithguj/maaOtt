@@ -1,22 +1,75 @@
 // Sample OTT services data
 
-export const ottData: ott[] = [
-    { name: "SonyLIV", logoSrc: "/logo.png", code: 'snyliv' },
-    { name: "ETV Win", logoSrc: "/logo.png", code: 'etvwin' },
-    { name: "Hotstar", logoSrc: "/logo.png", code: 'hotstar' },
-    { name: "ZEE5", logoSrc: "/logo.png", code: 'zee5' },
-    { name: "Amazon Prime Video", logoSrc: "/logo.png", code: 'amazonprime' },
-    { name: "Netflix", logoSrc: "/logo.png", code: 'netflix' },
-    // Add more OTT services as needed
-  ];
+export const ottData: { name: string; logoSrc: string; code: ottCode }[] = [
+  { name: "Runn Tv", logoSrc: "/runnTv.png", code: "runnTv" },
+  { name: "Sanskar Tv", logoSrc: "/sanskarTv.png", code: "sanskarTv" },
+  { name: "Shemaroo Tv", logoSrc: "/shemarooTv.png", code: "shemarooTv" },
+  { name: "Short Fundly", logoSrc: "/shortFundly.png", code: "shortFundly" },
+  { name: "Shorts Tv", logoSrc: "/shortsTv.png", code: "shortsTv" },
+  { name: "Sony Liv", logoSrc: "/sonyLiv.png", code: "sonyLiv" },
+  { name: "Stage", logoSrc: "/stage.png", code: "stage" },
+  { name: "Sun Nxt", logoSrc: "/sunNxt.png", code: "sunNxt" },
+  { name: "Ullu Tv", logoSrc: "/ulluTv.png", code: "ulluTv" },
+  { name: "Ultra Jhakaas", logoSrc: "/ultraJhakaas.png", code: "ultraJhakaas" },
+  { name: "Vr Ott", logoSrc: "/vrOtt.png", code: "vrOtt" },
+  { name: "Zee5", logoSrc: "/zee5.png", code: "zee5" },
+  { name: "Aao Nxt", logoSrc: "/aaoNxt.png", code: "aaoNxt" },
+  { name: "Aha Tamil", logoSrc: "/ahaTamil.png", code: "ahaTamil" },
+  { name: "Aha Telugu", logoSrc: "/ahaTelugu.png", code: "ahaTelugu" },
+  { name: "Alt Balaji", logoSrc: "/altBalaji.png", code: "altBalaji" },
+  { name: "Bgimg", logoSrc: "/bgimg.jpeg", code: "bgimg" },
+  { name: "Bhakti Flix", logoSrc: "/bhaktiFlix.png", code: "bhaktiFlix" },
+  { name: "Chaupal", logoSrc: "/chaupal.png", code: "chaupal" },
+  { name: "Cinema World", logoSrc: "/cinemaWorld.png", code: "cinemaWorld" },
+  { name: "Dangal Play", logoSrc: "/dangalPlay.png", code: "dangalPlay" },
+  { name: "Distro Tv", logoSrc: "/distroTv.png", code: "distroTv" },
+  { name: "Docu Bay", logoSrc: "/docuBay.png", code: "docuBay" },
+  {
+    name: "Dollywood Play",
+    logoSrc: "/dollywoodPlay.png",
+    code: "dollywoodPlay",
+  },
+  { name: "Etv Win", logoSrc: "/etvWin.png", code: "etvWin" },
+  { name: "Fancode", logoSrc: "/fancode.png", code: "fancode" },
+  { name: "I Stream", logoSrc: "/iStream.png", code: "iStream" },
+  { name: "I Tap", logoSrc: "/iTap.png", code: "iTap" },
+  { name: "Kanccha Lanka", logoSrc: "/kancchaLanka.png", code: "kancchaLanka" },
+  {
+    name: "Lionsgate Play",
+    logoSrc: "/lionsgatePlay.png",
+    code: "lionsgatePlay",
+  },
+  { name: "Live Tv", logoSrc: "/liveTv.png", code: "liveTv" },
+  { name: "Namma Flix", logoSrc: "/nammaFlix.png", code: "nammaFlix" },
+  { name: "Next", logoSrc: "/next.svg", code: "next" },
+  { name: "Om Tv", logoSrc: "/omTv.png", code: "omTv" },
+  { name: "Play Flix", logoSrc: "/playFlix.png", code: "playFlix" },
+  { name: "Power Kids", logoSrc: "/powerKids.png", code: "powerKids" },
+  { name: "Prag Play", logoSrc: "/pragPlay.png", code: "pragPlay" },
+  { name: "Prime Filx", logoSrc: "/primeFilx.png", code: "primeFilx" },
+  { name: "Ptc Play", logoSrc: "/ptcPlay.png", code: "ptcPlay" },
+  { name: "Raj Tv", logoSrc: "/rajTv.png", code: "rajTv" },
+  { name: "Reel Drama", logoSrc: "/reelDrama.png", code: "reelDrama" },
+  { name: "Hotstar", logoSrc: "/hotstar.png", code: "hotstar" },
+  { name: "Amazon Prime Video", logoSrc: "/primeVideo.png", code: "primeVideo" },
+];
+
 
 
   export const topOttPlatform: ott[] = [
-    { name: "SonyLIV", logoSrc: "/logo.png", code: 'snyliv' },
-    { name: "ETV Win", logoSrc: "/logo.png", code: 'etvwin' },
-    { name: "Hotstar", logoSrc: "/logo.png", code: 'hotstar' },
-    { name: "ZEE5", logoSrc: "/logo.png", code: 'zee5' },
-    { name: "Amazon Prime Video", logoSrc: "/logo.png", code: 'amazonprime' },
-    { name: "Netflix", logoSrc: "/logo.png", code: 'netflix' },
-    // Add more OTT services as needed
+    { name: "Hotstar", logoSrc: "/hotstar.png", code: "hotstar" },
+    {
+      name: "Amazon Prime Video",
+      logoSrc: "/primeVideo.png",
+      code: "primeVideo",
+    },
+    { name: "Sun Nxt", logoSrc: "/sunNxt.png", code: "sunNxt" },
+    { name: "ZEE5", logoSrc: "/zee5.png", code: "zee5" },
+    {
+      name: "Lionsgate Play",
+      logoSrc: "/lionsgatePlay.png",
+      code: "lionsgatePlay",
+    },
+    { name: "Aha Tamil", logoSrc: "/ahaTamil.png", code: "ahaTamil" },
+    { name: "Aha Telugu", logoSrc: "/ahaTelugu.png", code: "ahaTelugu" },
   ];

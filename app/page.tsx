@@ -12,28 +12,48 @@ import ToggleGroup from "./components/ToggleGroup";
 import { durationOptions } from "./appData/toggleGroupOptions";
 import { topOttPlatform } from "./appData/ott";
 import { useAppStore } from "./useAppStore";
+import router from "next/navigation";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 export default function Home(ref?: any) {
-  
   const referal = ref.searchParams.ref;
-  
+
   const [loading, setLoading] = useState(true);
   const [selectedValue, setSelectedValue] = useState<PricingDuration | null>(
-    null
+    "1m"
   );
 
   const handleSelect = (value: PricingDuration) => {
     setSelectedValue(value);
   };
 
-  const [setReferral, isLoggedIn] = useAppStore((s) => [
-    s.setReferral,
-    s.loggedIn,
-  ]);
+  const [setReferral, isLoggedIn, redirectedFromAuth, setRedirectedFromAuth] =
+    useAppStore((s) => [
+      s.setReferral,
+      s.loggedIn,
+      s.redirectedFromAuth,
+      s.setRedirectedFromAuth,
+    ]);
 
   useEffect(() => {
     setLoading(false);
     setReferral(referal ? (referal as string) : null);
+
+    console.log(redirectedFromAuth);
+    if (redirectedFromAuth) {
+      toast("Details saved sucefully. Our team will contact you", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      // setRedirectedFromAuth(false);
+    }
   }, []);
 
   return (
@@ -82,7 +102,19 @@ export default function Home(ref?: any) {
             </div>
           )}
         </header>
-
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          transition={Bounce}
+          className="text-3xl"
+        />
         {/* Hero Section */}
         <section className="flex flex-col items-center justify-center space-y-8">
           <h1 className="text-4xl font-bold tracking-tight">
@@ -219,12 +251,14 @@ export default function Home(ref?: any) {
                 key={index}
                 className="relative w-36 h-36 transform transition-transform hover:scale-110 hover:rotate-6"
               >
-                <Image
+                {/* <Image
                   src={platform.logoSrc}
+                  height={70}
+                  width={70}
                   alt={platform.name}
-                  layout="fill"
+                  // layout="fill"
                   objectFit="contain"
-                />
+                /> */}
                 {platform.name}
               </div>
             ))}
@@ -235,7 +269,7 @@ export default function Home(ref?: any) {
         <footer className="w-full mt-16 py-8 border-t border-gray-300 dark:border-gray-700 flex items-center justify-center space-x-4 text-gray-600 dark:text-gray-300">
           <p>&copy; {new Date().getFullYear()} Maaott. All rights reserved.</p>
           <div className="flex space-x-4">
-            <Link href="/terms">
+            {/* <Link href="/terms">
               <span className="hover:underline cursor-pointer">
                 Terms of Service
               </span>
@@ -244,7 +278,7 @@ export default function Home(ref?: any) {
               <span className="hover:underline cursor-pointer">
                 Privacy Policy
               </span>
-            </Link>
+            </Link> */}
           </div>
         </footer>
       </div>
