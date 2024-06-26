@@ -19,7 +19,7 @@ export default function Home(ref?: any) {
   
   const [loading, setLoading] = useState(true);
   const [selectedValue, setSelectedValue] = useState<PricingDuration | null>(
-    null
+    "1m"
   );
 
   const handleSelect = (value: PricingDuration) => {
@@ -219,12 +219,14 @@ export default function Home(ref?: any) {
                 key={index}
                 className="relative w-36 h-36 transform transition-transform hover:scale-110 hover:rotate-6"
               >
-                <Image
+                {/* <Image
                   src={platform.logoSrc}
+                  height={70}
+                  width={70}
                   alt={platform.name}
-                  layout="fill"
+                  // layout="fill"
                   objectFit="contain"
-                />
+                /> */}
                 {platform.name}
               </div>
             ))}
