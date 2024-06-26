@@ -1,11 +1,6 @@
-"use client";
-
-import { useState } from "react";
 import { ottData } from "../appData/ott";
-import Image from "next/image";
 
 // Interface for a single feature item
-
 export interface PlanProps {
   src?: string;
   alt?: string;
@@ -43,8 +38,7 @@ const PlanBox: React.FC<PlanProps & { planDuration: PricingDuration }> = ({
   const priceObj = pricing.find((price) => price.duration === planDuration);
 
   return (
-    <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col  items-center space-y-4 transform transition-transform hover:scale-105">
-      {/* <Image src={src} alt={alt || title} className="w-24 h-24 object-contain" /> */}
+    <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg flex flex-col items-center space-y-4 transform transition-transform hover:scale-105">
       <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
         {title}
       </h3>
@@ -53,26 +47,13 @@ const PlanBox: React.FC<PlanProps & { planDuration: PricingDuration }> = ({
       </p>
       <div className="flex flex-col items-start mt-auto">
         {/* Display pricing details */}
-        {/* <div className="flex flex-col">
-          {pricing.map((price, index) => (
-            <div key={index} className="flex justify-between">
-              <p className="text-gray-700 dark:text-gray-400"><strong>{price.duration.toUpperCase()}</strong> - Our Price: ${price.ourPrice}</p>
-              <p className="text-gray-700 dark:text-gray-400">Original Price: ${price.originalPrice}</p>
-            </div>
-          ))}
-        </div> */}
         {priceObj && (
           <div className="flex flex-col items-start mt-auto">
-            <div className="flex flex-col">
-              <div className="flex justify-between">
-                <p className="text-gray-700 dark:text-gray-400">
-                  <strong>{priceObj.duration.toUpperCase()}</strong> - Our
-                  Price: Rs {priceObj.ourPrice}
-                </p>
-                {/* <p className="text-gray-700 dark:text-gray-400">
-                  Original Price: Rs {priceObj.originalPrice}
-                </p> */}
-              </div>
+            <div className="flex justify-between">
+              <p className="text-gray-700 dark:text-gray-400">
+                <strong>{priceObj.duration.toUpperCase()}</strong> - Our
+                Price: Rs {priceObj.ourPrice}
+              </p>
             </div>
           </div>
         )}
@@ -84,15 +65,13 @@ const PlanBox: React.FC<PlanProps & { planDuration: PricingDuration }> = ({
                 const ottService = ottData.find((ott) => ott.code === code);
                 if (!ottService) return null;
                 return (
-                  <Image
-                    key={index}
-                    src={ottService.logoSrc}
-                    alt={ottService.name}
-                    // layout="fill"
-                    width={100}
-                    height={100}
-                    className="w-12 h-12 object-contain"
-                  />
+                  <div key={index} className="flex items-center justify-center">
+                    <img
+                      src={ottService.logoSrc}
+                      alt={ottService.name}
+                      className="w-24 h-10 object-contain"
+                    />
+                  </div>
                 );
               })}
             </div>
@@ -108,31 +87,14 @@ const PlanComponent: React.FC<{
   plans: PlanProps[];
   planDuration: PricingDuration;
 }> = ({ plans, planDuration }) => {
-  const [showAll, setShowAll] = useState(false);
-
-  // Toggle between showing all features and showing only the first 4
-  const toggleShowAll = () => {
-    setShowAll(!showAll);
-  };
 
   return (
     <div className="w-full mt-16">
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {plans.map((plans, index) => (
-          <PlanBox planDuration={planDuration} key={index} {...plans} />
+        {plans.map((plan, index) => (
+          <PlanBox planDuration={planDuration} key={index} {...plan} />
         ))}
       </section>
-      {/* Centered button container */}
-      {plans.length > 4 && (
-        <div className="flex justify-center mt-4">
-          <button
-            className="px-4 py-2 text-white bg-black shadow-md rounded-md opacity-90"
-            onClick={toggleShowAll}
-          >
-            {showAll ? "View Less" : "View All"}
-          </button>
-        </div>
-      )}
     </div>
   );
 };

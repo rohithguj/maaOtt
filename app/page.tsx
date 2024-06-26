@@ -237,7 +237,7 @@ export default function Home(ref?: any) {
         <footer className="w-full mt-16 py-8 border-t border-gray-300 dark:border-gray-700 flex items-center justify-center space-x-4 text-gray-600 dark:text-gray-300">
           <p>&copy; {new Date().getFullYear()} Maaott. All rights reserved.</p>
           <div className="flex space-x-4">
-            <Link href="/terms">
+            {/* <Link href="/terms">
               <span className="hover:underline cursor-pointer">
                 Terms of Service
               </span>
@@ -246,7 +246,7 @@ export default function Home(ref?: any) {
               <span className="hover:underline cursor-pointer">
                 Privacy Policy
               </span>
-            </Link>
+            </Link> */}
           </div>
         </footer>
       </div>
