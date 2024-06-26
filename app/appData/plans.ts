@@ -5,7 +5,7 @@ export const planData: PlanProps[] = [
     src: "/.png",
     title: "Mini",
     description:
-      "Standard HD plan with access to SonyLIV, ETV Win, Hotstar, ZEE5, Amazon Prime Video, and Netflix.",
+      "Mini plan with access to Aha Telugu, ETV Win, 300 plus live tv channels and 7 more ott's.",
     pricing: [
       { duration: "1m", ourPrice: 70, originalPrice: 14.99 },
       { duration: "3m", ourPrice: 180, originalPrice: 39.99 },
@@ -29,7 +29,7 @@ export const planData: PlanProps[] = [
     src: "/plan2_image.png",
     title: "Silver",
     description:
-      "Premium 4K plan with access to SonyLIV, Hotstar, Amazon Prime Video, and Netflix.",
+      "Starter Add free ott package with favorite ott's Sun Nxt, Aha Telugu, Sony Liv, Etv Win, 300+ live channels along with 13 more ott's",
     pricing: [
       { duration: "1m", ourPrice: 150, originalPrice: 24.99 },
       { duration: "3m", ourPrice: 420, originalPrice: 59.99 },
@@ -59,7 +59,7 @@ export const planData: PlanProps[] = [
     src: "/plan3_image.png",
     title: "Gold",
     description:
-      "Premium 4K plan with access to SonyLIV, Hotstar, Amazon Prime Video, and Netflix.",
+      "Mid budget plan to fit all kinds od puch into one package to satisify everyone.",
     pricing: [
       { duration: "1m", ourPrice: 200, originalPrice: 24.99 },
       { duration: "3m", ourPrice: 560, originalPrice: 59.99 },
@@ -94,12 +94,12 @@ export const planData: PlanProps[] = [
     src: "/plan4_image.png",
     title: "Diamond",
     description:
-      "Premium 4K plan with access to SonyLIV, Hotstar, Amazon Prime Video, and Netflix.",
+      "Enjoy ott's that fit for all interest and everyday use along with great amount of live channels.",
     pricing: [
-      { duration: "1m", ourPrice: 200, originalPrice: 24.99 },
-      { duration: "3m", ourPrice: 560, originalPrice: 59.99 },
-      { duration: "6m", ourPrice: 1050, originalPrice: 109.99 },
-      { duration: "1y", ourPrice: 2000, originalPrice: 199.99 },
+      { duration: "1m", ourPrice: 230, originalPrice: 24.99 },
+      { duration: "3m", ourPrice: 670, originalPrice: 59.99 },
+      { duration: "6m", ourPrice: 1300, originalPrice: 109.99 },
+      { duration: "1y", ourPrice: 2400, originalPrice: 199.99 },
     ],
     ottCodes: [
       "zee5",
@@ -134,7 +134,7 @@ export const planData: PlanProps[] = [
     src: "/plan5_image.png",
     title: "Platinum",
     description:
-      "Premium 4K plan with access to SonyLIV, Hotstar, Amazon Prime Video, and Netflix.",
+      "Premium plan to accomodate everyones needs adn ultimate entertainment pack.",
     pricing: [
       { duration: "1m", ourPrice: 260, originalPrice: 24.99 },
       { duration: "3m", ourPrice: 750, originalPrice: 59.99 },
@@ -181,6 +181,22 @@ export const planData: PlanProps[] = [
       "shemarooTv",
       "liveTv",
     ], // Array of OTT codes for this plan
+  },
+  {
+    src: "/plan6_image.png",
+    title: "Disney+ Offers",
+    description:
+      "Get Hotstar Super plan for : Ruppes 250 for 3 months And Ruppes 500 for 6 months And Ruppes 850 for 1 year",
+    pricing: [
+    ],
+    ottCodes: ["hotstar"], // Array of OTT codes for this plan
+  },
+  {
+    src: "/plan7_image.png",
+    title: "Prime Offers",
+    description: "Get 5 to 8 %off original price of Amazon Prime Video",
+    pricing: [],
+    ottCodes: ["primeVideo"], // Array of OTT codes for this plan
   },
   // Add more plan objects as needed
 ];
