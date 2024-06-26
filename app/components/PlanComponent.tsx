@@ -66,11 +66,11 @@ const PlanBox: React.FC<PlanProps & { planDuration: PricingDuration }> = ({
                 if (!ottService) return null;
                 return (
                   <div key={index} className="flex items-center justify-center">
-                    <img
+                    {<img
                       src={ottService.logoSrc}
                       alt={ottService.name}
-                      className="w-24 h-10 object-contain"
-                    />
+                      className="w-auto h-auto object-contain"
+                    />}
                   </div>
                 );
               })}

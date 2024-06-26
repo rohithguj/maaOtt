@@ -245,7 +245,7 @@ export default function Home(ref?: any) {
 
         <section className="w-full mt-16">
           <h2 className="text-4xl font-bold mb-8">Top Platforms Available</h2>
-          <div className="flex flex-wrap justify-center items-center space-x-8">
+          <div className="flex flex-wrap justify-center items-center space-x-8 text-lg">
             {topOttPlatform.map((platform, index) => (
               <div
                 key={index}
