@@ -51,7 +51,12 @@ export const ottData: { name: string; logoSrc: string; code: ottCode }[] = [
   { name: "Raj Tv", logoSrc: "/rajTv.png", code: "rajTv" },
   { name: "Reel Drama", logoSrc: "/reelDrama.png", code: "reelDrama" },
   { name: "Hotstar", logoSrc: "/hotstar.png", code: "hotstar" },
-  { name: "Amazon Prime Video", logoSrc: "/primeVideo.png", code: "primeVideo" },
+  {
+    name: "Amazon Prime Video",
+    logoSrc: "/primeVideo.png",
+    code: "primeVideo",
+  },
+  { name: "Monorama Max", logoSrc: "/manoramaMax.png", code: "manoramaMax" },
 ];
 
 

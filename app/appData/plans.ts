@@ -5,7 +5,7 @@ export const planData: PlanProps[] = [
     src: "/.png",
     title: "Mini",
     description:
-      "Mini plan with access to Aha Telugu, ETV Win, 300 plus live tv channels and 7 more ott's.",
+      "Mini plan with access to 10 oot's Aha Telugu, ETV Win, 300 plus live tv channels and 7 others.",
     pricing: [
       { duration: "1m", ourPrice: 70, originalPrice: 14.99 },
       { duration: "3m", ourPrice: 180, originalPrice: 39.99 },
@@ -16,6 +16,7 @@ export const planData: PlanProps[] = [
       "ahaTelugu",
       "etvWin",
       "bhaktiFlix",
+      "fancode",
       "playFlix",
       "distroTv",
       "powerKids",
@@ -29,7 +30,7 @@ export const planData: PlanProps[] = [
     src: "/plan2_image.png",
     title: "Silver",
     description:
-      "Starter Add free ott package with favorite ott's Sun Nxt, Aha Telugu, Sony Liv, Etv Win, 300+ live channels along with 13 more ott's",
+      "Starter Add free ott package with 15 favorite ott's Sun Nxt, Aha Telugu, Sony Liv, Etv Win, 300+ live channels and others",
     pricing: [
       { duration: "1m", ourPrice: 150, originalPrice: 24.99 },
       { duration: "3m", ourPrice: 420, originalPrice: 59.99 },
@@ -59,12 +60,12 @@ export const planData: PlanProps[] = [
     src: "/plan3_image.png",
     title: "Gold",
     description:
-      "Mid budget plan to fit all kinds od puch into one package to satisify everyone.",
+      "Mid budget plan with 20 ott's to fit all kinds of punch into one package to satisify everyone.",
     pricing: [
       { duration: "1m", ourPrice: 200, originalPrice: 24.99 },
       { duration: "3m", ourPrice: 560, originalPrice: 59.99 },
       { duration: "6m", ourPrice: 1050, originalPrice: 109.99 },
-      { duration: "1y", ourPrice: 2000, originalPrice: 199.99 },
+      { duration: "1y", ourPrice: 1800, originalPrice: 199.99 },
     ],
     ottCodes: [
       "zee5",
@@ -94,12 +95,12 @@ export const planData: PlanProps[] = [
     src: "/plan4_image.png",
     title: "Diamond",
     description:
-      "Enjoy ott's that fit for all interest and everyday use along with great amount of live channels.",
+      "Enjoy the 25 ott's that fit for all interest and everyday use along with great amount of live channels.",
     pricing: [
       { duration: "1m", ourPrice: 230, originalPrice: 24.99 },
       { duration: "3m", ourPrice: 670, originalPrice: 59.99 },
       { duration: "6m", ourPrice: 1300, originalPrice: 109.99 },
-      { duration: "1y", ourPrice: 2400, originalPrice: 199.99 },
+      { duration: "1y", ourPrice: 2000, originalPrice: 199.99 },
     ],
     ottCodes: [
       "zee5",
@@ -134,12 +135,12 @@ export const planData: PlanProps[] = [
     src: "/plan5_image.png",
     title: "Platinum",
     description:
-      "Premium plan to accomodate everyones needs adn ultimate entertainment pack.",
+      "Premium plan with 37 ott's to accomodate everyones needs adn ultimate entertainment pack.",
     pricing: [
       { duration: "1m", ourPrice: 270, originalPrice: 24.99 },
       { duration: "3m", ourPrice: 780, originalPrice: 59.99 },
       { duration: "6m", ourPrice: 1500, originalPrice: 109.99 },
-      { duration: "1y", ourPrice: 2800, originalPrice: 199.99 },
+      { duration: "1y", ourPrice: 2400, originalPrice: 199.99 },
     ],
     ottCodes: [
       "zee5",
@@ -159,7 +160,7 @@ export const planData: PlanProps[] = [
       "ptcPlay",
       "runnTv",
       "bhaktiFlix",
-      "nammaFlix",
+      "manoramaMax",
       "pragPlay",
       "omTv",
       "docuBay",
@@ -187,14 +188,13 @@ export const planData: PlanProps[] = [
     title: "Disney+ Offers",
     description:
       "Get Hotstar Super plan for : Ruppes 250 for 3 months And Ruppes 500 for 6 months And Ruppes 850 for 1 year",
-    pricing: [
-    ],
+    pricing: [],
     ottCodes: ["hotstar"], // Array of OTT codes for this plan
   },
   {
     src: "/plan7_image.png",
     title: "Prime Offers",
-    description: "Get 5 to 8 %off original price of Amazon Prime Video",
+    description: "Signup for our team to contact you abot exciting deals on Amazon Prime Video pricing.",
     pricing: [],
     ottCodes: ["primeVideo"], // Array of OTT codes for this plan
   },

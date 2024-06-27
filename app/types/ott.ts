@@ -50,6 +50,7 @@ type ottCode =
   | "rajTv"
   | "reelDrama"
   | "hotstar"
-  | "primeVideo";
+  | "primeVideo"
+  | "manoramaMax";
 
 type PricingDuration = "1m" | "3m" | "6m" | "1y";
