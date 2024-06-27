@@ -50,7 +50,7 @@ const PlanBox: React.FC<PlanProps & { planDuration: PricingDuration }> = ({
         {priceObj && (
           <div className="flex flex-col items-start mt-auto">
             <div className="flex justify-between">
-              <p className="text-gray-700 dark:text-gray-400">
+              <p className="text-gray-700 dark:text-gray-400 text-xl">
                 <strong>{priceObj.duration.toUpperCase()}</strong> - Our
                 Price: Rs {priceObj.ourPrice}
               </p>
