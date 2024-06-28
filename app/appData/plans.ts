@@ -64,7 +64,7 @@ export const planData: PlanProps[] = [
     pricing: [
       { duration: "1m", ourPrice: 200, originalPrice: 24.99 },
       { duration: "3m", ourPrice: 560, originalPrice: 59.99 },
-      { duration: "6m", ourPrice: 1050, originalPrice: 109.99 },
+      { duration: "6m", ourPrice: 1150, originalPrice: 109.99 },
       { duration: "1y", ourPrice: 1800, originalPrice: 199.99 },
     ],
     ottCodes: [
@@ -194,7 +194,8 @@ export const planData: PlanProps[] = [
   {
     src: "/plan7_image.png",
     title: "Prime Offers",
-    description: "Signup for our team to contact you abot exciting deals on Amazon Prime Video pricing.",
+    description:
+      "Signup for our team to contact you abot exciting deals on Amazon Prime Video pricing.",
     pricing: [],
     ottCodes: ["primeVideo"], // Array of OTT codes for this plan
   },
