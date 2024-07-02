@@ -13,7 +13,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useAppStore } from "../useAppStore";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import BgImg from "../components/BgImg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -66,17 +66,7 @@ const Login = () => {
 
   return (
     <div>
-      <div className="absolute inset-0">
-        <Image
-          src="/bgimg.jpeg"
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          className="blur-sm"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-gray-900 opacity-75"></div>
-      </div>
+      <BgImg />
       <div className="relative z-10 max-w-7xl w-full mx-auto flex flex-col items-center justify-center space-y-12 text-center text-white">
         <div className="flex items-center justify-center min-h-screen">
           <div className="bg-white p-8 rounded-md shadow-md w-full md:w-96">

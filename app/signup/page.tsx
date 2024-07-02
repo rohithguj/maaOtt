@@ -17,6 +17,7 @@ import {
   getDocs,
   setDoc,
   doc,
+  getDoc,
 } from "firebase/firestore"; // Import necessary Firestore functions
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,6 +27,7 @@ import Toggle from "../components/Toggle";
 import { useAppStore } from "../useAppStore";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import BgImg from "../components/BgImg";
 
 const SignUpForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -88,25 +90,36 @@ const SignUpForm: React.FC = () => {
     try {
       const user = auth.currentUser;
       if (user) {
-        // Update user profile with additional details
-        await setDoc( 
-          doc(db, "users", user.uid),
-          {
-            name,
-            phoneNumber,
-            city,
-            pin,
-            createdAt: new Date(),
-            lastUpdatedAt: new Date(),
-            isCollaborator, // Set initial value for isCollaborator
-            referal: referal,
-            uid: user.uid,
-            // Add other relevant fields here
-          },
-          { merge: true }
-        );
-        console.log("User details updated successfully!");
-        // Redirect or show success message
+        // Check if document already exists
+        const userDocRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(userDocRef);
+
+        if (!docSnap.exists()) {
+          // Document doesn't exist, so add new document
+          await setDoc(
+            userDocRef,
+            {
+              name,
+              phoneNumber,
+              city,
+              pin,
+              createdAt: new Date(),
+              lastUpdatedAt: new Date(),
+              referal: referal,
+              uid: user.uid,
+              registered: false,
+              active: false,
+              // Add other relevant fields here
+            },
+            { merge: true } // Use merge: true to merge with existing document if it exists (optional)
+          );
+
+          console.log("User details added successfully!");
+          // Redirect or show success message
+        } else {
+          console.log("User details already exist. Skipping addition.");
+          // Optionally handle case where document already exists
+        }
       } else {
         throw new Error("User not authenticated");
       }
@@ -169,34 +182,25 @@ const SignUpForm: React.FC = () => {
         pin,
         createdAt: new Date(),
         lastUpdatedAt: new Date(),
-        isCollaborator, // Set initial value for isCollaborator
         referal,
         uid: unregisteredUserId,
+        registered: false,
+        active: false,
         // Add other relevant fields here
       });
 
       console.log("Unregistered user details saved successfully!");
 
-      router.push("./");
+      // Optionally, handle redirection or success message
+      redirectUrl? router.push(redirectUrl as string) : router.push("./");
       setRedirect(null);
-      // Redirect or show success message
     } catch (err: any) {
       setError(err.message);
     }
   };
   return (
     <div>
-      <div className="absolute inset-0">
-        <Image
-          src="/bgimg.jpeg"
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          className="blur-sm"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-gray-900 opacity-75"></div>
-      </div>
+      <BgImg />
       <div className="relative z-10 max-w-7xl w-full mx-auto flex flex-col items-center justify-center space-y-12 text-center text-white">
         <div className="flex items-center justify-center min-h-screen">
           <div className="bg-white p-8 rounded-md shadow-md w-96">

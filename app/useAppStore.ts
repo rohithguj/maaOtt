@@ -1,5 +1,6 @@
-import { redirect } from "next/dist/server/api-utils";
-import {create} from "zustand";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../firebaseConfig";
+import { create } from "zustand";
 
 interface AppState {
   referral: string | null;
@@ -7,6 +8,7 @@ interface AppState {
   isCollaborator: boolean;
   redirect: string | null;
   redirectedFromAuth: boolean;
+  activeCount: number | null;
 }
 
 interface Actions {
@@ -14,6 +16,7 @@ interface Actions {
   setLoggedin: (loggedIn: boolean) => void;
   setRedirect: (redirect: string | null) => void;
   setRedirectedFromAuth: (redirectedFromAuth: boolean) => void;
+  getActiveCount: (uid: string) => Promise<number>;
 }
 
 const defaultStates: AppState = {
@@ -22,6 +25,7 @@ const defaultStates: AppState = {
   isCollaborator: false,
   redirect: null,
   redirectedFromAuth: false,
+  activeCount: null,
 };
 
 export const useAppStore = create<AppState & Actions>((set, get) => ({
@@ -31,4 +35,20 @@ export const useAppStore = create<AppState & Actions>((set, get) => ({
   setRedirect: (redirect: string | null) => set({ redirect }),
   setRedirectedFromAuth: (redirectedFromAuth: boolean) =>
     set({ redirectedFromAuth }),
+  getActiveCount: async (uid: string) => {
+    try {
+      // Query against collection1
+      const collection1Ref = collection(db, 'users');
+      const q = query(collection1Ref, where('refal', '==', uid), where('active', '==', true));
+      const querySnapshot = await getDocs(q);
+
+      // Get counts from both collections
+      const count = querySnapshot.size;
+
+      return count;
+    } catch (error) {
+      console.error("Error getting counts from collections:", error);
+      throw error;
+    }
+  },
 }));
