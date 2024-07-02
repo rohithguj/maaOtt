@@ -96,15 +96,15 @@ export default function Home(ref?: any) {
           </div>
           <div className="space-y-8 pt-10">
             <h2 className="text-3xl font-bold animate-fadeIn">
-              Your can now became a promoter or a Collaborator
+              Your can now became a promoter or a Collaborator / Prommotor
             </h2>
             <h2 className="text-3xl font-bold animate-fadeIn">
-              to win exciting offers free ott subscriptions & commisions.
+              to win exciting offers, free ott subscriptions & commisions.
             </h2>
             <div className="flex space-x-4 animate-bounce justify-center items-center">
               <Link href="/collaborators">
                 <h2 className="text-4xl btn-primary cursor-pointer text-lg bg-gray-600 p-4 rounded-lg text-white hover:bg-gray-800">
-                  Become a collaborator
+                  Become a Collaborator / Prommotor
                 </h2>
               </Link>
             </div>
